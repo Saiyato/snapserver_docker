@@ -1,2 +1,2 @@
 # snapserver_docker
-Dockerized snapclient
+t.b.d.
