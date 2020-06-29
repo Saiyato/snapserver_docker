@@ -13,6 +13,8 @@ To use the images, run (which automatically pulls) the image from the repo and s
 2. Define the necessary ports for communication: 1704 (Stream), 1705 (TCP) and 1780 (HTTP)
 3. Define the stream (syntax: `pipe://{fifo pipe}?{name}&{mode}&{sample format}`)
 
+You can overwrite SnapCast's config by mounting a file to /etc/snapserver.conf in the container. The default settings create a single stream called "SnapServer". See the Snapcast [docs](https://github.com/badaix/snapcast#configuration) to create your own config.
+
 ## Short and concise example
 The below example demonstrates how you can run the container using the above information. Note that I have added the `--rm` option, to auto-delete the container after exiting (for cleanup purposes).
 
