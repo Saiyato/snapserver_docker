@@ -23,5 +23,5 @@ docker run \
 -p 1705:1705 \
 -p 1780:1780 \
 saiyato/snapserver:alpine \
--s  pipe:///tmp/snapfifo?name=VOLUMIO-MPD&mode=read&sampleformat=44100:16:2
+-s  pipe:///tmp/snapfifo?name=VOLUMIO&mode=read&sampleformat=44100:16:2
 ```
