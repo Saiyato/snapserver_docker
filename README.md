@@ -10,7 +10,7 @@ This repository contains the scripts to auto-build images for SnapServer (the *s
 ## How to use
 To use the images, run (which automatically pulls) the image from the repo and set necessary parameters;
 1. Mount the /tmp/fifo in the container, so SnapServer can read from it
-2. Define the necessary ports for communication: 1704 and 1705
+2. Define the necessary ports for communication: 1704 (Stream), 1705 (TCP) and 1780 (HTTP)
 
 ## Short and concise example
 The below example demonstrates how you can run the container using the above information. Note that I have added the `--rm` option, to auto-delete the container after exiting (for cleanup purposes).
@@ -21,5 +21,6 @@ docker run \
 -v /tmp/snapfifo:/tmp/snapfifo \
 -p 1704:1704 \
 -p 1705:1705 \
+-p 1780:1780 \
 saiyato/snapserver:alpine \
 ```
