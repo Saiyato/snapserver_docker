@@ -25,5 +25,7 @@ RUN apk -U add git bash build-base asio-dev avahi-dev flac-dev libvorbis-dev als
 # Add page directory and update conf: https://github.com/badaix/snapcast/blob/1aee05cead72162d8e11d1f92d4d64e2379332e8/server/etc/snapserver.conf
 
 EXPOSE 1704
+EXPOSE 1705
+EXPOSE 1780
 
 ENTRYPOINT ["snapserver"]
