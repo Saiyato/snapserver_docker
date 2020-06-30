@@ -21,6 +21,8 @@ The below example demonstrates how you can run the container using the above inf
 ```
 docker run \
 --rm \
+--network host \
+--name snapserver \
 -v /tmp/snapfifo:/tmp/snapfifo \
 -p 1704:1704 \
 -p 1705:1705 \
