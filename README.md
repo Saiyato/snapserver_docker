@@ -10,7 +10,7 @@ This repository contains the scripts to auto-build images for SnapServer (the *s
 ## How to use
 To use the images, run (which automatically pulls) the image from the repo and set necessary parameters;
 1. Mount the /tmp/fifo in the container, so SnapServer can read from it
-2. Define the necessary ports for communication: 1704 (Stream), 1705 (TCP) and 1780 (HTTP)
+2. Define the necessary ports for communication: 1704 (audio stream), 1705 (TCP control) and 1780 (HTTP control)
 3. Define the stream (syntax: `pipe://{fifo pipe}?{name}&{mode}&{sample format}`)
 
 You can overwrite SnapCast's config by mounting a file to /etc/snapserver.conf in the container. The default settings create a single stream called "SnapServer". See the Snapcast [docs](https://github.com/badaix/snapcast#configuration) to create your own config.
