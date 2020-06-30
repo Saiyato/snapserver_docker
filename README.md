@@ -2,7 +2,7 @@
 [Snapcast](https://github.com/badaix/snapcast) is a multiroom client-server audio player, where all clients are time synchronized with the server to play perfectly synced audio. It's not a standalone player, but an extension that turns your existing audio player into a Sonos-like multiroom solution. The server's audio input is a named pipe `/tmp/snapfifo`. All data that is fed into this file will be sent to the connected clients. One of the most generic ways to use Snapcast is in conjunction with the music player daemon (MPD) or Mopidy, which can be configured to use a named pipe as audio output.
 
 ## Dockerized SnapServer
-This repository contains the scripts to auto-build images for SnapServer (the *server* part of the solution) for the ARM architecture. The base image is *arm32v7/alpine:latest*, and the binaries are built from source instead of using pre-built binaries from the package archive.
+This repository contains the scripts to auto-build images for SnapServer (the *server* part of the solution) for the ARM architecture. The base image is *{arch}/alpine:latest*, and the binaries are built from source instead of using pre-built binaries from the package archive.
 
 ###### Project info
 * Overall  <img alt="Docker Cloud Build Status" src="https://img.shields.io/docker/cloud/build/saiyato/snapserver?style=flat-square">  <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/saiyato/snapserver?style=flat-square">  <img alt="Docker Image Version (latest by date)" src="https://img.shields.io/docker/v/saiyato/snapserver?style=flat-square">
