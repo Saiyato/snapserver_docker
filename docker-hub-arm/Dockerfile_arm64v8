@@ -31,6 +31,7 @@ RUN apk -U add git bash build-base asio-dev avahi-dev flac-dev libvorbis-dev als
 RUN apk add --no-cache ca-certificates && update-ca-certificates && \
     wget -O /microscanner https://get.aquasec.com/microscanner && \
     chmod +x /microscanner && \
+    echo "Scanning for vulnerabilities..." && \
     /microscanner ${microscannertoken} && \
     echo "No vulnerabilities found!" && \
     rm -rf /microscanner && \
