@@ -1,19 +1,27 @@
 # SnapCast
-[Snapcast](https://github.com/badaix/snapcast) is a multiroom client-server audio player, where all clients are time synchronized with the server to play perfectly synced audio. It's not a standalone player, but an extension that turns your existing audio player into a Sonos-like multiroom solution. The server's audio input is a named pipe `/tmp/snapfifo`. All data that is fed into this file will be sent to the connected clients. One of the most generic ways to use Snapcast is in conjunction with the music player daemon (MPD) or Mopidy, which can be configured to use a named pipe as audio output.
+[SnapCast](https://github.com/badaix/snapcast) is a multiroom client-server audio player, where all clients are time synchronized with the server to play perfectly synced audio. It's not a standalone player, but an extension that turns your existing audio player into a Sonos-like multiroom solution. The server's audio input is a named pipe `/tmp/snapfifo`. All data that is fed into this file will be sent to the connected clients. One of the most generic ways to use Snapcast is in conjunction with the music player daemon (MPD) or Mopidy, which can be configured to use a named pipe as audio output.
 
 ## Dockerized SnapServer
 This repository contains the scripts to auto-build images for SnapServer (the *server* part of the solution) for the ARM architecture. The base image is *{arch}/alpine:latest*, and the binaries are built from source instead of using pre-built binaries from the package archive.
 
-###### Project info
-* Overall  <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/saiyato/snapserver?style=flat-square">  <img alt="Docker Image Version (latest by date)" src="https://img.shields.io/docker/v/saiyato/snapserver?style=flat-square">
-* ARM32v6  <img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapserver/arm32v6?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapserver/arm32v6?style=flat-square">
-* ARM32v7  <img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapserver/arm32v7?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapserver/arm32v7?style=flat-square">
-* ARM64v8  <img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapserver/arm64v8?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapserver/arm64v8?style=flat-square">
+###### Overall
+<img alt="Docker Cloud Build Status" src="https://img.shields.io/docker/cloud/build/saiyato/snapserver?style=flat-square">  <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/saiyato/snapserver?style=flat-square">
+###### ARM32v6
+<img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapserver/arm32v6?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapserver/arm32v6?style=flat-square">
+###### ARM32v7
+<img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapserver/arm32v7?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapserver/arm32v7?style=flat-square">
+###### ARM64v8
+<img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapserver/arm64v8?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapserver/arm64v8?style=flat-square">
 
-* i386  <img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapserver/i386?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapserver/i386?style=flat-square">
-* AMD64  <img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapserver/amd64?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapserver/amd64?style=flat-square">
+###### i386
+<img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapserver/i386?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapserver/i386?style=flat-square">
+###### AMD64
+<img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapserver/amd64?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapserver/amd64?style=flat-square">
 
-## How to use
+## Building the container
+The Dockerfiles can be found in [my GitHub project](https://github.com/Saiyato/snapserver_docker) and they're built cross platform, qemu is downloaded in the builder to allow for arm builds on commodity hardware and Docker Hub. Development packages and the source code are downloaded, whereafter the binary is built from source. The container is then cleaned from any build artifacts and the dependencies are added. As a final step, a vulnerability scan is performed by [microscanner](https://github.com/aquasecurity/microscanner) (Aqua Security).
+
+## How to use the container
 To use the images, run (which automatically pulls) the image from the repo and set necessary parameters;
 1. Mount the /tmp/fifo in the container, so SnapServer can read from it
 2. Define the necessary ports for communication: 1704 (audio stream), 1705 (TCP control) and 1780 (HTTP control)
@@ -28,6 +36,15 @@ The below example demonstrates how you can run the container using the above inf
 docker run \
 --rm \
 --network host \
+--name snapserver \
+-v /tmp/snapfifo:/tmp/snapfifo \
+saiyato/snapserver:{arch} \
+-s  pipe:///tmp/snapfifo?name=VOLUMIO&mode=read&sampleformat=44100:16:2
+```
+Or, if you want it to be hosted on a separate IP
+```
+docker run \
+--rm \
 --name snapserver \
 -v /tmp/snapfifo:/tmp/snapfifo \
 -p 1704:1704 \
