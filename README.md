@@ -5,7 +5,7 @@
 This repository contains the scripts to auto-build images for SnapServer (the *server* part of the solution) for the ARM architecture. The base image is *{arch}/alpine:latest*, and the binaries are built from source instead of using pre-built binaries from the package archive.
 
 ###### Project info
-* Overall  <img alt="Docker Cloud Build Status" src="https://img.shields.io/docker/cloud/build/saiyato/snapserver?style=flat-square">  <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/saiyato/snapserver?style=flat-square">  <img alt="Docker Image Version (latest by date)" src="https://img.shields.io/docker/v/saiyato/snapserver?style=flat-square">
+* Overall  <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/saiyato/snapserver?style=flat-square">  <img alt="Docker Image Version (latest by date)" src="https://img.shields.io/docker/v/saiyato/snapserver?style=flat-square">
 * ARM32v6  <img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapserver/arm32v6?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapserver/arm32v6?style=flat-square">
 * ARM32v7  <img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapserver/arm32v7?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapserver/arm32v7?style=flat-square">
 * ARM64v8  <img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapserver/arm64v8?style=flat-square">  <img alt="MicroBadger Layers (tag)" src="https://img.shields.io/microbadger/layers/saiyato/snapserver/arm64v8?style=flat-square">
