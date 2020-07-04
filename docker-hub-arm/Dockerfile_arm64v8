@@ -6,7 +6,7 @@ ENV QEMU_URL https://github.com/balena-io/qemu/releases/download/v4.0.0%2Bbalena
 RUN apk add curl && curl -L ${QEMU_URL} | tar zxvf - -C . --strip-components 1
 
 FROM arm64v8/alpine:latest
-COPY --from=builder qemu-arm-static /usr/bin
+COPY --from=builder qemu-aarch64-static /usr/bin
 
 MAINTAINER Saiyato
 
