@@ -9,6 +9,7 @@ FROM arm64v8/alpine:latest
 COPY --from=builder qemu-aarch64-static /usr/bin
 
 MAINTAINER Saiyato
+ARG microscannertoken
 
 RUN apk -U add git bash build-base asio-dev avahi-dev flac-dev libvorbis-dev alsa-lib-dev opus-dev soxr-dev cmake \
  && cd /root \
@@ -25,6 +26,15 @@ RUN apk -U add git bash build-base asio-dev avahi-dev flac-dev libvorbis-dev als
  && apk --purge del git build-base asio-dev avahi-dev flac-dev libvorbis-dev alsa-lib-dev opus-dev soxr-dev cmake \
  && apk add avahi-libs flac libvorbis opus soxr alsa-lib \
  && rm -rf /etc/ssl /var/cache/apk/* /lib/apk/db/* /root/snapcast /root/snapweb
+ 
+# Scan container using microscanner by Aqua Security
+RUN apk add --no-cache ca-certificates && update-ca-certificates && \
+    wget -O /microscanner https://get.aquasec.com/microscanner && \
+    chmod +x /microscanner && \
+    /microscanner ${microscannertoken} && \
+    echo "No vulnerabilities found!" && \
+    rm -rf /microscanner && \
+    apk --purge del ca-certificates
 
 EXPOSE 1704
 EXPOSE 1705
