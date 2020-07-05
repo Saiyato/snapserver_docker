@@ -39,7 +39,7 @@ docker run \
 --name snapserver \
 -v /tmp/snapfifo:/tmp/snapfifo \
 saiyato/snapserver:{arch} \
--s  pipe:///tmp/snapfifo?name=VOLUMIO&mode=read&sampleformat=44100:16:2
+--stream.stream  pipe:///tmp/snapfifo?name=VOLUMIO&mode=read&sampleformat=44100:16:2
 ```
 Or, if you want it to be hosted on a separate IP
 ```
@@ -51,6 +51,6 @@ docker run \
 -p 1705:1705 \
 -p 1780:1780 \
 saiyato/snapserver:{arch} \
--s  pipe:///tmp/snapfifo?name=VOLUMIO&mode=read&sampleformat=44100:16:2
+--stream.stream  pipe:///tmp/snapfifo?name=VOLUMIO&mode=read&sampleformat=44100:16:2
 ```
 Where {arch} should denote the architecture you're running on (e.g. arm32v6, arm64v8, amd64 etc).
