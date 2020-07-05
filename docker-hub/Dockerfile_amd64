@@ -13,7 +13,7 @@ RUN apk -U add git bash build-base asio-dev avahi-dev flac-dev libvorbis-dev als
  && cd /root \
  && git clone https://github.com/badaix/snapweb \
  && mkdir -p /var/www/html \
- && cp snapweb/page /var/www/html \
+ && cp snapweb/page/* /var/www/html \
  && wget -O /etc/snapserver.conf https://raw.githubusercontent.com/Saiyato/snapserver_docker/master/snapserver/snapserver.conf \ 
  && cd / \
  && apk --purge del git build-base asio-dev avahi-dev flac-dev libvorbis-dev alsa-lib-dev opus-dev soxr-dev cmake \
