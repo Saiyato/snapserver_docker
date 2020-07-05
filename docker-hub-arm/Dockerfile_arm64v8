@@ -9,7 +9,7 @@ FROM arm64v8/alpine:latest
 COPY --from=builder qemu-aarch64-static /usr/bin
 
 MAINTAINER Saiyato
-ARG microscannertoken
+ARG TOKEN
 
 RUN apk -U add git bash build-base asio-dev avahi-dev flac-dev libvorbis-dev alsa-lib-dev opus-dev soxr-dev cmake \
  && cd /root \
@@ -32,7 +32,7 @@ RUN apk add --no-cache ca-certificates && update-ca-certificates && \
     wget -O /microscanner https://get.aquasec.com/microscanner && \
     chmod +x /microscanner && \
     echo "Scanning for vulnerabilities..." && \
-    /microscanner ${microscannertoken} && \
+    /microscanner $TOKEN && \
     echo "No vulnerabilities found!" && \
     rm -rf /microscanner && \
     apk --purge del ca-certificates
