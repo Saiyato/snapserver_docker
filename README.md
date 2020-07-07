@@ -54,3 +54,6 @@ saiyato/snapserver:{arch} \
 --stream.stream  pipe:///tmp/snapfifo?name=VOLUMIO&mode=read&sampleformat=44100:16:2
 ```
 Where {arch} should denote the architecture you're running on (e.g. arm32v6, arm64v8, amd64 etc).
+
+Test your setup by connecting to the server (easiest way is to use SnapDroid from the App Store) and stream noise into the fifo file.
+`sudo cat /dev/urandom > /tmp/snapfifo`
