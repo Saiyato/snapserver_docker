@@ -1,4 +1,4 @@
-# Install SnapClient on minimal OS
+# Install SnapServer on minimal OS
 FROM alpine AS builder
 
 # Download QEMU, see https://github.com/docker/hub-feedback/issues/1261
