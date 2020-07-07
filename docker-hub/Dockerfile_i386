@@ -1,4 +1,4 @@
-# Install SnapClient on minimal OS
+# Install SnapServer on minimal OS
 
 FROM i386/alpine:latest
 
