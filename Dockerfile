@@ -7,7 +7,7 @@ WORKDIR /root
 RUN apk -U add git bash build-base asio-dev avahi-dev flac-dev libvorbis-dev alsa-lib-dev opus-dev soxr-dev cmake \
  && git clone --recursive https://github.com/badaix/snapcast.git \
  && make -C snapcast/server \
- && cp snapserver /usr/local/bin \
+ && cp snapcast/server/snapserver /usr/local/bin \
  && git clone https://github.com/badaix/snapweb \
  && mkdir -p /var/www/html \
  && cp -r snapweb/page/* /var/www/html \
