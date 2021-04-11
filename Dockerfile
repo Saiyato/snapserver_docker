@@ -1,7 +1,7 @@
-# Install SnapServer on minimal OS - script v2.0.3 [2021-03-31]
+# Install SnapServer on minimal OS - script v2.0.3 [2021-04-11]
 FROM amd64/alpine:latest
 
-MAINTAINER Saiyato
+LABEL maintainer="Saiyato"
 WORKDIR /root
 
 RUN apk -U add alsa-lib-dev avahi-dev bash build-base ccache cmake expat-dev flac-dev git libvorbis-dev opus-dev soxr-dev \
@@ -17,7 +17,7 @@ RUN apk -U add alsa-lib-dev avahi-dev bash build-base ccache cmake expat-dev fla
  && wget -O /etc/snapserver.conf https://raw.githubusercontent.com/Saiyato/snapserver_docker/master/snapserver/snapserver.conf \ 
  && apk --purge del alsa-lib-dev avahi-dev bash build-base ccache cmake expat-dev flac-dev git libvorbis-dev opus-dev soxr-dev \
  && apk add alsa-lib avahi-libs expat flac libvorbis opus soxr \
- && rm -rf /etc/ssl /var/cache/apk/* /lib/apk/db/* /root/snapcast 
+ && rm -rf /etc/ssl /var/cache/apk/* /lib/apk/db/* /root/snapcast
 
 EXPOSE 1704
 EXPOSE 1705
