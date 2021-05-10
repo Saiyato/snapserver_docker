@@ -53,6 +53,21 @@ docker run \
 saiyato/snapserver:{arch} \
 --stream.stream  pipe:///tmp/snapfifo?name={stream_name}&mode=read&sampleformat=44100:16:2
 ```
+Or as a docker-compose
+```
+version: "3"
+
+services:
+  snapserver:
+    image: saiyato/snapserver:{arch}
+    container_name: snapserver
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /tmp/snapfifo:/tmp/snapfifo
+    command: --stream.stream  pipe:///tmp/snapfifo?name={stream_name}&mode=read&sampleformat=44100:16:2
+```
+
 Where {arch} should denote the architecture you're running on (e.g. arm32v6, arm64v8, amd64 etc). And {stream_name} should denote the name you want to assign to the particular stream.
 
 Test your setup by connecting to the server (easiest way is to use SnapDroid from the App Store) and stream noise into the fifo file.
