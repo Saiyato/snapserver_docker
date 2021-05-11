@@ -18,9 +18,8 @@ RUN apk -U add alsa-lib-dev avahi-dev bash build-base ccache cmake expat-dev fla
  && mkdir -p /var/www/html \
  && cp -r snapweb/dist/* /var/www/html \
  && wget -O /etc/snapserver.conf https://raw.githubusercontent.com/Saiyato/snapserver_docker/master/snapserver/snapserver.conf \
- && apk --purge del alsa-lib-dev avahi-dev bash build-base ccache cmake expat-dev flac-dev git libvorbis-dev opus-dev soxr-dev \
  && npm uninstall -g typescript \
- && apk --purge del npm nodejs c-ares \
+ && apk --purge del alsa-lib-dev avahi-dev bash build-base ccache cmake expat-dev flac-dev git libvorbis-dev opus-dev soxr-dev npm nodejs c-ares\
  && apk add alsa-lib avahi-libs expat flac libvorbis opus soxr \
  && rm -rf /etc/ssl /var/cache/apk/* /lib/apk/db/* /root/snapcast
 
