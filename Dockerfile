@@ -14,9 +14,7 @@ RUN apk -U add alsa-lib-dev avahi-dev bash build-base ccache cmake expat-dev fla
  && apk -U add npm \
  && npm install -g typescript@latest \
  && git clone https://github.com/badaix/snapweb \
- && cd snapweb \
- && make \
- && cd .. \
+ && make -C snapweb \
  && mkdir -p /var/www/html \
  && cp -r snapweb/dist/* /var/www/html \
  && wget -O /etc/snapserver.conf https://raw.githubusercontent.com/Saiyato/snapserver_docker/master/snapserver/snapserver.conf \
