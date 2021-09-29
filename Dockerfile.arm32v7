@@ -15,8 +15,9 @@ RUN apk -U add alsa-lib-dev avahi-dev bash build-base ccache cmake expat-dev fla
  && cmake --build build --parallel 3 \
  && cp bin/snapserver /usr/local/bin \
  && git clone https://github.com/badaix/snapweb \
+ && make -C snapweb \
  && mkdir -p /var/www/html \
- && cp -r snapweb/page/* /var/www/html \
+ && cp -r snapweb/dist/* /var/www/html \
  && wget -O /etc/snapserver.conf https://raw.githubusercontent.com/Saiyato/snapserver_docker/master/snapserver/snapserver.conf \ 
  && apk --purge del alsa-lib-dev avahi-dev bash build-base ccache cmake expat-dev flac-dev git libvorbis-dev opus-dev soxr-dev \
  && apk add alsa-lib avahi-libs expat flac libvorbis opus soxr \
