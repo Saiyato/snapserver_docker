@@ -12,7 +12,7 @@ RUN apk -U add alsa-lib-dev avahi-dev bash build-base ccache cmake expat-dev fla
  && cmake --build build --parallel 3 \
  && cp bin/snapserver /usr/local/bin \
  && apk -U add npm \
- && npm install -g typescript@latest \
+ && npm install -g typescript@4.3 \
  && git clone https://github.com/badaix/snapweb \
  && make -C snapweb \
  && mkdir -p /var/www/html \
