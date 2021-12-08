@@ -6,10 +6,10 @@ This repository contains the scripts to auto-build images for SnapServer (the *s
 
 Unfortunately Docker auto-build has been discontinued for free use, so I have to manually build, push and create manifests. If you want to do this yourself, no problem.
 1. Clone the repo
-2. Make the bash-files executable (`chmod +x`)
+2. Make the bash-files executable (`chmod +x build-multiarch.sh push_to_dockerhub.sh`)
 3. Install Docker desktop
-4. `./build-multiarch.sh -t <any_tag_you_want> -f <dockerfile>`
-e.g. `./build-multiarch.sh -t saiyato/snapserver:arm32v7 -f Dockerfile.arm32v7`
+4. `./build-multiarch.sh -i <image_name> -a <architecure>`
+e.g. `./build-multiarch.sh -i saiyato/snapserver -a arm32v7`
 
 Want to upload it to your own Docker Hub repo? Also no problem
 1. Continue from the above (clone, chmod, etc)
