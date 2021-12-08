@@ -20,7 +20,7 @@ e.g. `./push_to_dockerhub.sh -i saiyato/snapserver`
 Note that the upload script will look for the arm32v6, arm32v7, arm64v8, amd64 and i386 tags to push and annotate.
 
 ###### Overall
-<img alt="Docker Cloud Build Status" src="https://img.shields.io/docker/cloud/build/saiyato/snapserver?style=flat-square">
+<img alt="Docker Cloud Build Status" src="https://img.shields.io/docker/cloud/build/saiyato/snapserver?style=flat-square">   <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/saiyato/snapserver?style=flat-square">
 
 ###### ARM32v6
 <img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapserver/arm32v6?style=flat-square">
