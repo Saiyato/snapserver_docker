@@ -14,8 +14,8 @@ COPY dummy qemu-*-static /usr/bin/
 RUN apk -U add alsa-lib-dev avahi-dev bash build-base ccache cmake expat-dev flac-dev git libvorbis-dev opus-dev soxr-dev \
  && git clone --recursive https://github.com/badaix/snapcast.git \
  && cd snapcast \
- && wget https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.tar.bz2 && tar -xjf boost_1_76_0.tar.bz2 \
- && cmake -S . -B build -DBOOST_ROOT=boost_1_76_0 -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DBUILD_WITH_PULSE=OFF -DCMAKE_BUILD_TYPE=Release -DBUILD_CLIENT=OFF .. \
+ && wget https://boostorg.jfrog.io/artifactory/main/release/1.78.0/source/boost_1_78_0.tar.bz2 && tar -xjf boost_1_78_0.tar.bz2 \
+ && cmake -S . -B build -DBOOST_ROOT=boost_1_78_0 -DCMAKE_CXX_COMPILER_LAUNCHER=ccache -DBUILD_WITH_PULSE=OFF -DCMAKE_BUILD_TYPE=Release -DBUILD_CLIENT=OFF .. \
  && cmake --build build --parallel 3
 
 # SnapWeb build stage
@@ -23,7 +23,7 @@ FROM node:alpine as snapweb
 WORKDIR /root
 
 RUN apk add build-base git \
- && npm install -g typescript@4.3 \
+ && npm install -g typescript \
  && git clone https://github.com/badaix/snapweb \
  && make -C snapweb
 
