@@ -1,4 +1,4 @@
-name: main
+name: build
 on:
   workflow_dispatch:
     inputs:
