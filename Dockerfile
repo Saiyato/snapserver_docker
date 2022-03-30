@@ -1,5 +1,5 @@
 # Install SnapServer on minimal OS - script v4.0.1 [2022-03-30]
-ARG ALPINE_BASE="3.12"
+ARG ALPINE_BASE="3.15"
 
 # SnapCast build stage
 FROM alpine:${ALPINE_BASE} as compiler
