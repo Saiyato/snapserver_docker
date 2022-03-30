@@ -1,0 +1,30 @@
+name: trigger
+on:
+  schedule:
+    - cron: "0 10 * * *" # everyday at 10
+  workflow_dispatch: # allow manual execution
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: trigger build if image is missing
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          # get latest snapcast version
+          version=$(curl -qsL https://api.github.com/repos/badaix/snapcast/releases/latest | jq -r ".tag_name")
+          # get all docker tags
+          versions=$(curl -qsL https://registry.hub.docker.com/v1/repositories/${{ secrets.DOCKERHUB_USERNAME }}/snapcast/tags | jq '[.[].name]')
+          # exit early if image already exists
+          if echo $versions | jq -er "any(. == \"$version\")"; then
+              exit 0
+          fi
+          # trigger build
+          gh api -X POST /repos/$GITHUB_REPOSITORY/actions/workflows/build.yaml/dispatches --input - <<-EOF
+          {
+              "ref": "$GITHUB_REF",
+              "inputs": {
+                  "version": "$version"
+              }
+          }
+          EOF

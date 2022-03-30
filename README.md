@@ -39,7 +39,9 @@ Note that the upload script will look for the arm32v6, arm32v7, arm64v8, amd64 a
 <img alt="Docker Image Size (tag)" src="https://img.shields.io/docker/image-size/saiyato/snapserver/amd64?style=flat-square">
 
 ## Building the container
-The Dockerfiles can be found in [my GitHub project](https://github.com/Saiyato/snapserver_docker) and they're built cross platform, qemu is downloaded in the builder to allow for arm builds on commodity hardware and Docker Hub. Development packages and the source code are downloaded, whereafter the binary is built from source. The container is then cleaned from any build artifacts and the dependencies are added. As a final step, a vulnerability scan is performed by [microscanner](https://github.com/aquasecurity/microscanner) (Aqua Security).
+The Dockerfile can be found in [my GitHub project](https://github.com/Saiyato/snapserver_docker) and they can be built cross platform, buildx is used for multiarch building. Development packages and the source code are downloaded, whereafter the binary is compiled from source. The container is then cleaned from any build artifacts and the dependencies are added. This repository and the corresponding images are scanned by Snyk on a weekly basis for vulnerabilities.
+
+Manually building the container is also super easy: `docker buildx build --load -t snapserver .`
 
 ## How to use the container
 To use the images, run (which automatically pulls) the image from the repo and set necessary parameters;
@@ -55,7 +57,7 @@ The below example demonstrates how you can run the container using the above inf
 ```
 docker run \
 --rm \
---network host \
+--network=host \
 --name snapserver \
 -v /tmp/snapfifo:/tmp/snapfifo \
 saiyato/snapserver:{arch} \
