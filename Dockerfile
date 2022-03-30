@@ -60,8 +60,8 @@ RUN <<EOF
 
 EOF
 
-COPY --from=compiler /root/snapcast/bin/snapserver /usr/local/bin/
-COPY --from=snapweb /root/snapweb/dist/ /usr/share/snapserver/snapweb
+COPY --from=compiler snapcast/bin/snapserver /usr/local/bin/
+COPY --from=snapweb snapweb/dist/ /usr/share/snapserver/snapweb
 
 EXPOSE 1704
 EXPOSE 1705
