@@ -39,8 +39,8 @@ FROM node:alpine as snapweb
 
 RUN <<EOF
     apk -U add build-base git
-    npm install -g typescript \
-    git clone https://github.com/badaix/snapweb \
+    npm install -g typescript
+    git clone https://github.com/badaix/snapweb
     make -C snapweb
 EOF
 
