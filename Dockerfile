@@ -20,9 +20,9 @@ RUN <<EOF
     soxr-dev
 EOF
 
-ARG VERSION=main
+ARG VERSION=master
 RUN <<EOF 
-    git clone --recursive https://github.com/badaix/snapcast.git
+    git clone --recursive --depth 1 --branch $VERSION https://github.com/badaix/snapcast.git
     cd snapcast
 
     cmake -S . -B build \
