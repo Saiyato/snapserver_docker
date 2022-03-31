@@ -31,8 +31,10 @@ jobs:
         with:
           context: .
           # arm/v6,7,8: https://github.com/alpinelinux/docker-alpine/issues/135
+          # Alpine 3.13.0+ requires: libseccomp 2.4.2 _and_ docker engine v19.04+
+          # https://wiki.alpinelinux.org/wiki/Release_Notes_for_Alpine_3.13.0#time64_requirements
           platforms: linux/amd64,linux/arm64
           push: true
           build-args: |
             VERSION=${{ github.event.inputs.version }}
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/snapcast:${{ github.event.inputs.version }},${{ secrets.DOCKERHUB_USERNAME }}/snapcast:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/snapserver:${{ github.event.inputs.version }},${{ secrets.DOCKERHUB_USERNAME }}/snapserver:latest
