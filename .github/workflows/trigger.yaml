@@ -14,7 +14,7 @@ jobs:
           # get latest snapcast version
           version=$(curl -qsL https://api.github.com/repos/badaix/snapcast/releases/latest | jq -r ".tag_name")
           # get all docker tags
-          versions=$(curl -qsL https://registry.hub.docker.com/v1/repositories/${{ secrets.DOCKERHUB_USERNAME }}/snapcast/tags | jq '[.[].name]')
+          versions=$(curl -qsL https://registry.hub.docker.com/v1/repositories/${{ secrets.DOCKERHUB_USERNAME }}/snapserver/tags | jq '[.[].name]')
           # exit early if image already exists
           if echo $versions | jq -er "any(. == \"$version\")"; then
               exit 0
